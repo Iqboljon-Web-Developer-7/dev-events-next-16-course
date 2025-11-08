@@ -6,7 +6,15 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,
   },
-  // PostHog rewrites to proxy ingestion requests
+  images: {
+    remotePatterns:[
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      }
+    ]
+  }
+  ,
   async rewrites() {
     return [
       {
@@ -19,7 +27,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
 
